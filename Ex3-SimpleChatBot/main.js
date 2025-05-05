@@ -68,7 +68,7 @@ async function runConversation() {
   // Create recursive chat function
   const chat = async () => {
     rl.question('You: ', async (input) => {
-      if (input.toLowerCase() === 'exit') {
+      if (input.toLowerCase() === 'exit') { 
         rl.close();
         return;
       }
