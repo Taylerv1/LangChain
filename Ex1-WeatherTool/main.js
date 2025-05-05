@@ -31,7 +31,7 @@ export async function create_agent(systemPromptText = "You are a helpful assista
         return new AgentExecutor({
             agent,
             tools: [weatherTool],
-            verbose: true,
+            verbose: false,
             maxIterations: 3,
         });
 }
