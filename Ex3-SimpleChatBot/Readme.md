@@ -94,6 +94,52 @@ demo();
 
 ---
 
+## Code Example: Chat Loop Implementation
+
+Here's a key part of our chatbot that handles the conversation flow:
+
+```javascript
+const chat = async () => {
+  rl.question('You: ', async (input) => {
+    if (input.toLowerCase() === 'exit') {
+      rl.close();
+      return;
+    }
+
+    try {
+      const response = await agent.invoke({ input });
+      console.log('\nBot:', response.output, '\n');
+      chat(); // Continue the conversation
+    } catch (error) {
+      console.error('Error:', error);
+      chat();
+    }
+  });
+};
+```
+
+### How It Works:
+
+1. The bot shows a "You: " prompt and waits for your input
+2. If you type "exit", the chat ends
+3. Your message is sent to the AI agent
+4. The bot prints the AI's response
+5. The process repeats (thanks to `chat()` calling itself)
+
+Example conversation:
+```
+You: Hello!
+Bot: Hi! How can I help you today?
+
+You: What's 2 + 2?
+Bot: Let me calculate that for you. 2 + 2 = 4
+
+You: exit
+Chat ended. Goodbye!
+```
+
+---
+
 What Happens?
 
 First call saves “Sam” to short-term memory.

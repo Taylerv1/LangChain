@@ -5,6 +5,7 @@ import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 import { Calculator } from "@langchain/community/tools/calculator";
 import { BufferMemory } from "langchain/memory";
+import * as readline from 'readline';
 
 // 2. Run dotenv
 dotenv.config();
@@ -53,21 +54,44 @@ async function createAgent() {
   });
 }
 
-// Turn on the conversation
+// Create readline interface
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Modified runConversation function
 async function runConversation() {
   const agent = await createAgent();
+  console.log("Chat started! (Type 'exit' to end the conversation)");
   
-  // First conversation
-  const response1 = await agent.invoke({
-    input: "My name is tayler, can you calculate 7 * 10",
-  });
-  console.log("First reply", response1.output);
-  
-  // Second conversation - the bot will remember your name
-  const response2 = await agent.invoke({
-    input: "What's my name?",
-  });
-  console.log("Second reply", response2.output);
+  // Create recursive chat function
+  const chat = async () => {
+    rl.question('You: ', async (input) => {
+      if (input.toLowerCase() === 'exit') {
+        rl.close();
+        return;
+      }
+
+      try {
+        const response = await agent.invoke({ input });
+        console.log('\nBot:', response.output, '\n');
+        chat(); // Continue the conversation
+      } catch (error) {
+        console.error('Error:', error);
+        chat(); // Continue despite error
+      }
+    });
+  };
+
+  // Start the chat
+  chat();
 }
+
+// Handle readline close
+rl.on('close', () => {
+  console.log('\nChat ended. Goodbye!');
+  process.exit(0);
+});
 
 runConversation();
