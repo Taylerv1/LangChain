@@ -55,7 +55,7 @@ export async function create_activity_agent(systemPromptText = "You are a helpfu
         return new AgentExecutor({
             agent,
             tools: [activitySuggestionTool],
-            verbose: true,
+            verbose: false,
             maxIterations: 3,
         });
 }
@@ -68,9 +68,9 @@ async function runChain() {
         const activityAgent = await create_activity_agent();
         
         // Get weather information first
-        console.log("Getting weather for: New York");
+        console.log("Getting weather for: Saida");
         const weatherResult = await weatherAgent.invoke({
-            input: "What is the weather in New York?",
+            input: "What is the weather in Saida?",
         });
         
         const weatherInfo = weatherResult.output;
