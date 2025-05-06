@@ -1,0 +1,27 @@
+Machine learning (ML) is a field of inquiry devoted to understanding and building methods that 'learn', 
+that is, methods that leverage data to improve performance on some set of tasks. It is seen as a 
+part of artificial intelligence.
+
+Machine learning algorithms build a model based on sample data, known as training data, in order to 
+make predictions or decisions without being explicitly programmed to do so. Machine learning 
+algorithms are used in a wide variety of applications, such as in medicine, email filtering, speech 
+recognition, and computer vision, where it is difficult or infeasible to develop conventional algorithms
+to perform the needed tasks.
+
+Deep learning is a subset of machine learning where artificial neural networks adapt and learn from vast amounts of data. Unlike traditional algorithms, deep learning uses multiple layers of neural networks to automatically learn representations of data with multiple levels of abstraction.
+
+Key features of deep learning include:
+1. Automatic feature extraction
+2. Hierarchical learning
+3. End-to-end learning
+4. Scalability with data
+
+Common applications include image recognition, natural language processing, and autonomous vehicles.
+
+Reinforcement learning is an area of machine learning concerned with how intelligent agents ought to take actions
+in an environment in order to maximize the notion of cumulative reward. Reinforcement learning is one of three
+basic machine learning paradigms, alongside supervised learning and unsupervised learning.
+
+Supervised learning algorithms build a mathematical model of a set of data that contains both the inputs and
+the desired outputs. The data is known as training data, and consists of a set of training examples. Each
+training example has one or more inputs and the desired output, also known as a supervisory signal.
